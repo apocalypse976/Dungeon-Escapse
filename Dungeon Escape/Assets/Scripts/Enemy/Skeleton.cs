@@ -31,10 +31,10 @@ public class Skeleton : Enemy, IDamagable
             diamond.GetComponent<Diamonds>().gems= Gems;
         }
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(Coll.bounds.center + transform.right * Range * transform.localScale.x * Coll_dis,
-            new Vector2(Coll.bounds.size.x * Range, Coll.bounds.size.y));
-    }
+//    private void OnDrawGizmos()
+//    {
+//        Gizmos.color = Color.red;
+//        Gizmos.DrawWireCube(Coll.bounds.center + transform.right * Range * transform.localScale.x * Coll_dis,
+//            new Vector2(Coll.bounds.size.x * Range, Coll.bounds.size.y));
+//    }
 }

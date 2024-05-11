@@ -1,16 +1,15 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] private GameObject _shop,_shopButton;
+    [SerializeField] private GameObject _shop, _shopButton;
     [SerializeField] private TextMeshProUGUI _text;
-    private int _itemsId,_price;
+    private int _itemsId, _price;
     private Player player;
     private void Start()
     {
-       player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -50,21 +49,21 @@ public class Shop : MonoBehaviour
     }
     public void BuyItems()
     {
-        if (_itemsId == 0&&player.Diamond>=_price)
+        if (_itemsId == 0 && player.Diamond >= _price)
         {
             GameManager.Instance.keytoCastle = true;
             player.Diamond -= _price;
             UIManager.Instance.UpdateGemsCount(player.Diamond);
             _text.text = "You have sucessully bought Key to Castle \n" + "Gems Left: " + player.Diamond + " G";
         }
-        else if (_itemsId == 1&& player.Diamond >= _price)
+        else if (_itemsId == 1 && player.Diamond >= _price)
         {
             GameManager.Instance.flightsBoots = true;
             player.Diamond -= _price;
             _text.text = "You have sucessully bought Boots of Flight \n" + "Gems Left: " + player.Diamond + " G";
             UIManager.Instance.UpdateGemsCount(player.Diamond);
         }
-        else if (_itemsId == 2&& player.Diamond >= _price)
+        else if (_itemsId == 2 && player.Diamond >= _price)
         {
             GameManager.Instance.fireSword = true;
             player.Diamond -= _price;

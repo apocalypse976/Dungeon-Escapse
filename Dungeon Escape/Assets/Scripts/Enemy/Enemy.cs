@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-using TMPro;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
@@ -8,20 +6,22 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected int Gems;
     [SerializeField] protected float Speed;
     [SerializeField] protected Transform Point_A, Point_B;
-    [SerializeField] protected GameObject Player,Diamond;
+    [SerializeField] protected GameObject Diamond;
     [SerializeField] private LayerMask _playerlayer;
     [SerializeField] protected float Coll_dis, Range;
+    protected GameObject Player;
     protected bool hit;
     protected Animator Anim;
     protected Vector3 CurrentTarget;
     protected bool Dead;
     protected Collider2D Coll;
-    
+
 
     public virtual void Init()
     {
         Anim = transform.GetChild(0).GetComponent<Animator>();
-        Coll= GetComponent<Collider2D>();
+        Coll = GetComponent<Collider2D>();
+        Player = GameObject.FindWithTag("Player");
     }
     private void Start()
     {
@@ -56,16 +56,17 @@ public abstract class Enemy : MonoBehaviour
             CurrentTarget = Point_A.localPosition;
             Anim.SetTrigger("Idle");
         }
-        if (!Anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !hit&&!Dead&&!PlayerOnSight())
+        if (!Anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !hit && !Dead && !PlayerOnSight())
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, CurrentTarget, Speed * Time.deltaTime);
         }
         if (!PlayerOnSight())
-        { 
-            Anim.SetBool("IsCombat", false);
-        }else if (PlayerOnSight())
         {
-           Anim.Play("Attack");
+            Anim.SetBool("IsCombat", false);
+        }
+        else if (PlayerOnSight())
+        {
+            Anim.Play("Attack");
             Anim.SetBool("IsCombat", true);
         }
         Vector3 Direction = Player.transform.localPosition - transform.localPosition;
@@ -82,8 +83,8 @@ public abstract class Enemy : MonoBehaviour
     }
     public bool PlayerOnSight()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(Coll.bounds.center+transform.right*Range*transform.localScale.x*Coll_dis,
-            new Vector2(Coll.bounds.size.x*Range,Coll.bounds.size.y),0,Vector2.right,0,_playerlayer);
+        RaycastHit2D hit = Physics2D.BoxCast(Coll.bounds.center + transform.right * Range * transform.localScale.x * Coll_dis,
+            new Vector2(Coll.bounds.size.x * Range, Coll.bounds.size.y), 0, Vector2.right, 0, _playerlayer);
         return hit.collider != null;
     }
 }

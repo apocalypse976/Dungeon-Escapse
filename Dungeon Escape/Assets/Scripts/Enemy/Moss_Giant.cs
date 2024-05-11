@@ -35,11 +35,11 @@ public class Moss_Giant : Enemy, IDamagable
 
         }
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(Coll.bounds.center + transform.right * range * transform.localScale.x * coll_dis,
-            new Vector2(Coll.bounds.size.x * range, Coll.bounds.size.y));
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireCube(Coll.bounds.center + transform.right * range * transform.localScale.x * coll_dis,
+    //        new Vector2(Coll.bounds.size.x * range, Coll.bounds.size.y));
+    //}
 
 }

@@ -38,7 +38,6 @@ public class Player : MonoBehaviour, IDamagable
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("jump Button Update");
                 jump();
             }
         }        
@@ -75,13 +74,11 @@ public class Player : MonoBehaviour, IDamagable
         {
             if(GameManager.Instance.flightsBoots)
             {
-                Debug.Log("jump Button");
-                _rb.AddForce(Vector2.up * _jumpforce*1.5f, ForceMode2D.Impulse);
+                _rb.AddForce(Vector2.up * _jumpforce*2.3f, ForceMode2D.Impulse);
                 _anim.jumpAnim();
             }
             else
             {
-                Debug.Log("jump Button");
                 _rb.AddForce(Vector2.up * _jumpforce, ForceMode2D.Impulse);
                 _anim.jumpAnim();
             }
@@ -114,7 +111,9 @@ public class Player : MonoBehaviour, IDamagable
             _anim.DeathAnim();
            _coll.enabled = false;
             _rb.isKinematic = true;
-            
+            GameManager.Instance.GameOver = true;
+            GameManager.Instance.gameOver();
+
         }
     }
     public void AddGems(int gems)
