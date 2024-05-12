@@ -156,3 +156,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gems: 1
+  _pickUpClip: {fileID: 8300000, guid: 51af604d434a548c991c95dbfc15d542, type: 3}

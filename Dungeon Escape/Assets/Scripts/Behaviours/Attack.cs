@@ -8,7 +8,7 @@ public class Attack : MonoBehaviour
         IDamagable hit = collision.GetComponent<IDamagable>();
         if (hit != null && _canDamage)
         {
-            hit.Damage(2);
+            hit.Damage(20);
             _canDamage = false;
         }
         Invoke("ResetDamage", 0.5f);

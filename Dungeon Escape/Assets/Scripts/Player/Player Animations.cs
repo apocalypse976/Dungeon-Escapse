@@ -4,6 +4,7 @@ public class PlayerAnimations : MonoBehaviour
 {
     private Animator _anim;
     private Animator _sanim;
+    [SerializeField] private AudioClip _SwordClip,_fireSwordClip,JumpClip,_deathClip;
     private void Start()
     {
         _anim = GetComponent<Animator>();
@@ -33,5 +34,21 @@ public class PlayerAnimations : MonoBehaviour
     public void FireSwing()
     {
         _anim.SetTrigger("FlameSword");
+    }
+    public void FireSwordSwing()
+    {
+        AudioManager.Singleton.PlayAudio(_fireSwordClip);
+    }
+    public void SwordSwing()
+    {
+        AudioManager.Singleton.PlayAudio(_SwordClip);
+    }
+    public void JumpAudio()
+    {
+        AudioManager.Singleton.PlayAudio(JumpClip);
+    }
+    public void DeathAudio()
+    {
+        AudioManager.Singleton.PlayAudio(_deathClip);
     }
 }

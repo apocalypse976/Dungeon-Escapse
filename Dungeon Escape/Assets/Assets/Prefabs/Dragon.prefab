@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4ef7213e513ff4e90693ed7f44896f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 15
+  Health: 100
   Gems: 0
   Speed: 0
   Point_A: {fileID: 0}
@@ -106,6 +106,7 @@ MonoBehaviour:
   _fireBall: {fileID: 6419866546470519790, guid: 28973fe5123b7b94ca287614f078eaa3,
     type: 3}
   _firePoint: {fileID: 7320555827547528622}
+  healthBar: {fileID: 0}
 --- !u!1 &1222451549123982809
 GameObject:
   m_ObjectHideFlags: 0
