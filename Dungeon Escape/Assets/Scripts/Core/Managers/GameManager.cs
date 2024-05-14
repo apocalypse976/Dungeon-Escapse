@@ -85,12 +85,6 @@ public class GameManager : MonoBehaviour
         _pausePanel.SetActive(false);
 
     }
-    public void Settings()
-    {
-        AudioManager.Singleton.PlayAudio(_SelectionClip);
-        _settingsPanel.SetActive(true);
-        _pausePanel.SetActive(false);
-    }
     public void Back()
     {
         AudioManager.Singleton.PlayAudio(_SelectionClip);

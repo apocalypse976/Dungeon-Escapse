@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
@@ -23,13 +24,14 @@ public class AudioManager : MonoBehaviour
         {
             _sfxsource = GetComponent<AudioSource>();
             _musicSource= transform.GetChild(0).GetComponent<AudioSource>();
-            _musicSlider = GameObject.Find("UI Canvas").transform.GetChild(7).transform.GetChild(2).transform.GetChild(0).GetComponent<Slider>();
-            _sfxSlider = GameObject.Find("UI Canvas").transform.GetChild(7).transform.GetChild(3).transform.GetChild(0).GetComponent<Slider>();
+            _musicSlider = GameObject.Find("SettingsCanvas").transform.GetChild(0).transform.GetChild(2).transform.GetChild(0).GetComponent<Slider>();
+            _sfxSlider = GameObject.Find("SettingsCanvas").transform.GetChild(0).transform.GetChild(3).transform.GetChild(0).GetComponent<Slider>();
         }
         catch (System.Exception e)
         {
             Debug.LogError(e.Message);
         }
+      
         if ((!PlayerPrefs.HasKey(_sfxKey) && !PlayerPrefs.HasKey(_musicKey)) || (!PlayerPrefs.HasKey(_musicKey) || !PlayerPrefs.HasKey(_sfxKey)))
         {
             PlayerPrefs.SetFloat(_sfxKey, 1f);
@@ -43,9 +45,12 @@ public class AudioManager : MonoBehaviour
             loadMusic();
         }
     }
+    
     private void Update()
     {
+
         DontDestroyOnLoad(gameObject);
+        
     }
     public void PlayAudio(AudioClip clip)
     {
@@ -53,11 +58,13 @@ public class AudioManager : MonoBehaviour
     }
     public void SfxChange()
     {
-        _sfxsource.volume = _sfxSlider.value;
+        Debug.Log("SFX Change");
+        _sfxsource.volume = _sfxSlider.value ;
         SaveSFX();
     }
     public void MusicChange()
     {
+        Debug.Log("Music Change");
         _musicSource.volume = _musicSlider.value;
         SaveMusic();
     }
